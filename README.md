@@ -25,3 +25,14 @@
 
   - If no user name, run `git config --global user.name "replace_with_github_username".`
   - If no user email, run `git config --global user.email "replace_with_github_email".`
+
+### Git Init
+
+- Once you create a project, `cd` into the project directory and run `git init` to initialize the project as a Github repository.
+
+### Git Status
+
+- Running `git status` will provide a message on the current state of the repo. These are things such as which files are added or deleted or modified, which branch you are on, and if you made any commits.
+
+  - You will see if a file is **untracked**. This means that the current file has not been committed to the repo yet so git is not keeping track of the difference (diff) between file changes.
+  - You can create a `.gitignore` file to ignore files or directories within the repo. These will not be tracked.
