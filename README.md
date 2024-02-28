@@ -1,6 +1,12 @@
 # Fireship.io Course
 
-![Fireship.io Logo](https://yt3.googleusercontent.com/ytc/AIdro_ltOWCZT10fChupyd1atupxII0RoP97CwYGr0Gphw=s176-c-k-c0x00ffffff-no-rj)
+![Fireship.io Logo]()
+
+<p align="middle">
+  <img src="https://yt3.googleusercontent.com/ytc/AIdro_ltOWCZT10fChupyd1atupxII0RoP97CwYGr0Gphw=s176-c-k-c0x00ffffff-no-rj" width="100" />
+  <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/mark-github-1024.png" width="100" />
+  <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" width="100" />
+</p>
 
 ## Git & GitHub
 
