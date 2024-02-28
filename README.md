@@ -42,3 +42,12 @@
 - Before committing file changes to the repo you need to send them to the staging area. This is done using `git add .` (The . adds all files to staging, but you can specify by writing out the file name instead of the period).
 
   - If you want to remove files from staging before committing them you can run `git reset .`.
+
+### Commit
+
+- Every commit has a unique ID that git can use to track the difference in those files versus the difference in some other commit.
+- This allows you to be able to roll back to a previous commit if, for example, a bug is introduced to your code.
+- You can perform a commit by running `git commit -m "Your commit message goes here."`. After the commit, and if you staged all file changes, you will have a clean working directory.
+- You can also skip the step of adding to staging and combine the add/commit in one command as follows `git add -a -m "Your commit message goes here."`.
+
+  - To get info about the last commit you can run `git log`. This will provide you with the ID, author, and timestamp. You will also see the commit referencing the **head** on the master/main branch. The head is the most current commit on a branch ([See definitions](#definitions)).
