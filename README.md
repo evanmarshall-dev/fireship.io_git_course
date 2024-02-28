@@ -1,1 +1,3 @@
-# New Repo
+# Fireship.io Course
+
+## Git & GitHub
