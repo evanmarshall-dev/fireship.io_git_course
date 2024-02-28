@@ -36,3 +36,9 @@
 
   - You will see if a file is **untracked**. This means that the current file has not been committed to the repo yet so git is not keeping track of the difference (diff) between file changes.
   - You can create a `.gitignore` file to ignore files or directories within the repo. These will not be tracked.
+
+### Staging
+
+- Before committing file changes to the repo you need to send them to the staging area. This is done using `git add .` (The . adds all files to staging, but you can specify by writing out the file name instead of the period).
+
+  - If you want to remove files from staging before committing them you can run `git reset .`.
