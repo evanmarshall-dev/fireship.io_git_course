@@ -23,8 +23,8 @@
 
 - Run `git config --list` to modify our current git config. This list should have a user name and a user email.
 
-  - If no user name, run `git config --global user.name "replace_with_github_username".`
-  - If no user email, run `git config --global user.email "replace_with_github_email".`
+  - If no user name, run `git config --global user.name "replace_with_github_username"`.
+  - If no user email, run `git config --global user.email "replace_with_github_email"`.
 
 ### Git Init
 
@@ -39,7 +39,7 @@
 
 ### Staging
 
-- Before committing file changes to the repo you need to send them to the staging area. This is done using `git add .` (The . adds all files to staging, but you can specify by writing out the file name instead of the period).
+- Before committing file changes to the repo you need to send them to the staging area. This is done using `git add .` (The `.` adds all files to staging, but you can specify by writing out the file name instead of the period).
 
   - If you want to remove files from staging before committing them you can run `git reset .`.
 
@@ -59,7 +59,7 @@
 
   - Within the git dashboard you can see file changes, if they are staged or not, and if you click the file name it will open up a git diff panel.
   - You can also easily stage or un-stage files as well as commit the changes.
-  - If you click the ... icon it will list all git commands and allow you to run them without typing them out (This git dashboard UI essentially works like the git desktop app).
+  - If you click the `...` icon it will list all git commands and allow you to run them without typing them out (This git dashboard UI essentially works like the git desktop app).
   - At the bottom of vscode you will see the current branch name listed. If you click that it will list all of the project branches and allow you to switch between them.
 
 ## Remote (GitHub)
@@ -71,13 +71,13 @@
 
   - For even more info use `git remote show origin`.
 
-- You can add the project to origin by using the command `git remote add origin https://github.com/your-username/repo-name.git`. You can also configure with SSH, which changes the syntax of the origin URL (i.e. git@ssh-config:your-username/repo-name.git).
+- You can add the project to origin by using the command `git remote add origin https://github.com/your-username/repo-name.git`. You can also configure with SSH, which changes the syntax of the origin URL (i.e. `git@ssh-config:your-username/repo-name.git`).
 
 ### Git Push
 
-- Takes the work in our local repository and syncs it up with our remote repo. This is accomplished with the command `git push origin main` (git push remote-repo-name branch-to-be-pushed).
+- Takes the work in our local repository and syncs it up with our remote repo. This is accomplished with the command `git push origin main` (`git push remote-repo-name branch-to-be-pushed`).
 
-  - Adding `-u` to the command to set the origin repo to the upstream remote in the .gitconfig file (i.e. `git push origin main -u`). This allows us to use a command (`git pull`) without requiring any additional arguments.
+  - Adding `-u` to the command to set the origin repo to the upstream remote in the `.gitconfig` file (i.e. `git push origin main -u`). This allows us to use a command (`git pull`) without requiring any additional arguments.
 
 - You can edit on the remote repo in GitHub directly (i.e. pencil icon) and then commit it from there as well. This is good when fixing small typos, for example.
 
@@ -106,3 +106,10 @@
 - This can be accomplished by the following command `git clone https://github.com/username/repo-name.git` (Or using SSH keys such as the example used in the [Git Remote Section](#git-remote)).
 
   - You can also add a different name to the directory by appending the name to the end of the above command (i.e. `git clone git@ssh-config:your-username/repo-name.git name-of-dir`).
+
+### GitHub Codespaces
+
+- While you are browsing the remote repo on GitHub, if you hit `.` it will open a cloud-based version of vscode. This is another useful strategy for small changes that you do not want to have to deal with on your local machine.
+- You cannot use terminal in the cloud-based vscode, but if you try to access it you do receive the option to use the terminal in **codespaces** (This is basically vscode running a virtual machine (VM) with the necessary dependencies to run your app).
+
+  - You can configure codespaces to use as much memory and computing power as you need.
