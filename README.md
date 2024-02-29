@@ -6,7 +6,7 @@
   <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" width="100" />
 </p>
 
-## Git Started
+## GIT STARTED
 
 ### Definitions
 
@@ -62,7 +62,7 @@
   - If you click the `...` icon it will list all git commands and allow you to run them without typing them out (This git dashboard UI essentially works like the git desktop app).
   - At the bottom of vscode you will see the current branch name listed. If you click that it will list all of the project branches and allow you to switch between them.
 
-## Remote (GitHub)
+## REMOTE (GitHub)
 
 ### Git Remote
 
@@ -113,3 +113,16 @@
 - You cannot use terminal in the cloud-based vscode, but if you try to access it you do receive the option to use the terminal in **codespaces** (This is basically vscode running a virtual machine (VM) with the necessary dependencies to run your app).
 
   - You can configure codespaces to use as much memory and computing power as you need.
+
+## COLLABORATION
+
+### Git Branch
+
+- Branching allows multiple developers to work on different app features in isolation from the main branch. Branches are also good for solo developers who want to experiment with a feature without polluting the master/main branch.
+- To list all current branches in a project write `git branch`.
+
+  - It is common to rename the master branch to main and this is accomplished by running `git branch -M main`.
+
+  - If you want to create a branch run `git branch new-branch-name`.
+
+  - If you want to delete a branch run `git branch -d new-branch-name`. If you use a `-D` when you run the branch deletion then it will delete the branch even if there is changes on it and it has been merged into the main branch.
