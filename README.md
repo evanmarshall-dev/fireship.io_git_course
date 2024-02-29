@@ -8,6 +8,8 @@
 
 ## Git & GitHub
 
+## Git Started
+
 ### Definitions
 
 **_The Head_** - Represents the most recent commit. There is an ID assigned to each commit, which allows you to always revert back to it.
@@ -61,3 +63,14 @@
   - You can also easily stage or un-stage files as well as commit the changes.
   - If you click the ... icon it will list all git commands and allow you to run them without typing them out (This git dashboard UI essentially works like the git desktop app).
   - At the bottom of vscode you will see the current branch name listed. If you click that it will list all of the project branches and allow you to switch between them.
+
+## Remote
+
+### Git Remote
+
+- There are other options for remote collaboration (i.e. Bitbucket and GitLab), but this course will focus on GitHub.
+- If you run `git remote -v` it will tell you what repositories you have linked to your project as well as the URLs. Typically the remote repo has the name **origin**.
+
+  - For even more info use `git remote show origin`.
+
+- You can add the project to origin by using the command `git remote add origin https://github.com/your-username/repo-name.git`. You can also configure with SSH, which changes the syntax of the origin URL (i.e. git@ssh-config:your-username/repo-name.git).
