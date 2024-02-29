@@ -149,3 +149,11 @@
   - If you accept the changes then you need to create a new commit called a **merge commit**. You commit the merge the same way you would normally commit changes however it is good practice to label somewhere in the commit message that it is for a merge.
 
 - If you want to go back to the original state prior to the merge starting then you can run `git merge --abort`.
+
+### Fork
+
+- Similar to git clone, forking is more of a GitHub thing. You would fork a repo if you want to contribute to an open source project and push your own copy of the code hosted on GitHub.
+
+- It copies the project to your own GitHub account and allows you to make changes to it without affecting the original. It still maintains a link to the original repo so that you can fetch updates.
+
+- Common practice is to work on a new feature in the forked repo then send a **_pull request_** to merge that new code into the original repo. The author of the original can then review your changes and decide if they want to merge your code or not.
