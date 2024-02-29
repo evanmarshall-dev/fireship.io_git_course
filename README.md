@@ -157,3 +157,22 @@
 - It copies the project to your own GitHub account and allows you to make changes to it without affecting the original. It still maintains a link to the original repo so that you can fetch updates.
 
 - Common practice is to work on a new feature in the forked repo then send a **_pull request_** to merge that new code into the original repo. The author of the original can then review your changes and decide if they want to merge your code or not.
+
+### Pull Request
+
+1. Find a GitHub repo you want to contribute to.
+2. Fork the repo (maintains a link to the original upstream repo).
+3. Clone the fork onto your local system.
+4. Open up project on your local machine and create a branch that describes the changes you are going to make.
+5. Use `git checkout` to switch into the new branch.
+6. After you complete the changes, `git add` and `git commit` to commit them to the repo.
+7. Then push up to the repo using `git push origin your-feature-branch-name`.
+8. Go back to the repo on GitHub and click the button to create a new pull request.
+9. Make sure you follow the contribution guidelines to the original repo owner carefully.
+10. Click the green button to submit the pull request.
+
+- When working with the fork locally you can keep it in sync with the original repo by running:
+
+  - `git remote add upstream https://github.com/original-username/original-repo-name.git`. This adds a remote link to the upstream repo.
+  - When there are changes run `git fetch upstream`.
+  - Then run `git rebase upstream/main` to apply changes on top of your existing work.
