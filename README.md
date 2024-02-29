@@ -74,3 +74,13 @@
   - For even more info use `git remote show origin`.
 
 - You can add the project to origin by using the command `git remote add origin https://github.com/your-username/repo-name.git`. You can also configure with SSH, which changes the syntax of the origin URL (i.e. git@ssh-config:your-username/repo-name.git).
+
+### Git Push
+
+- Takes the work in our local repository and syncs it up with our remote repo. This is accomplished with the command `git push origin main` (git push remote-repo-name branch-to-be-pushed).
+
+  - Adding `-u` to the command to set the origin repo to the upstream remote in the .gitconfig file (i.e. `git push origin main -u`). This allows us to use a command (`git pull`) without requiring any additional arguments.
+
+- You can edit on the remote repo in GitHub directly (i.e. pencil icon) and then commit it from there as well. This is good when fixing small typos, for example.
+
+  - This will cause the remote repo to be one commit ahead of the local repo.
