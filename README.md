@@ -119,6 +119,7 @@
 ### Git Branch
 
 - Branching allows multiple developers to work on different app features in isolation from the main branch. Branches are also good for solo developers who want to experiment with a feature without polluting the master/main branch.
+
 - To list all current branches in a project write `git branch`.
 
   - It is common to rename the master branch to main and this is accomplished by running `git branch -M main`.
@@ -126,3 +127,13 @@
   - If you want to create a branch run `git branch new-branch-name`.
 
   - If you want to delete a branch run `git branch -d new-branch-name`. If you use a `-D` when you run the branch deletion then it will delete the branch even if there is changes on it and it has been merged into the main branch.
+
+### Git Checkout
+
+- Just creating the branch does not move you into the created branch. To do this you need to run `git checkout branch-name`.
+
+- You can commit the changes and the branch to the remote repo by running `git commit -am "Your commit message here."`.
+
+- If you switch back to the main branch prior to merging then the code you created on the branch will disappear.
+
+- If you are on the main branch and you want to both create a new branch and checkout the new branch in one command you would run `git checkout -b new-branch-name`.
