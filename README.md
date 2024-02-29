@@ -81,6 +81,14 @@
 
 - You can edit on the remote repo in GitHub directly (i.e. pencil icon) and then commit it from there as well. This is good when fixing small typos, for example.
 
-  - This will cause the remote repo to be one commit ahead of the local repo.
+  - This will cause the remote repo to be one commit ahead of the local repo. There is a head at the main branch locally (vscode) and also a head at the main branch on the remote repo. Each of the heads currently have a different commit.
 
 ### Git Merge
+
+- When the main branch locally has a different commit than the main branch remotely, there are two ways to merge them together.
+- The **first** strategy is to fetch the remote changes then merge the two branches together. To fetch the latest changes locally we run `git fetch`. This downloads the changes but the local code does not reflect the remote code yet.
+
+  - We now need to merge the remote main branch with the local main branch. Click the list of branches on the bottom taskbar in vscode to get the name of remote branch. Then run `git merge origin/main`.
+  - The output in the terminal after a merge, you will notice the term **_Fast-Forward_**. That is what is known as a **merge strategy**. This is the simplest strategy to be used when the commits are connected together and you do not need to resolve any merge conflicts. In more complex cases that cannot be easily fast forwarded and additional merge commit will be required to show how the two branches were merged together.
+
+### Git Pull
