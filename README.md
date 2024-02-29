@@ -6,8 +6,6 @@
   <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" width="100" />
 </p>
 
-## Git & GitHub
-
 ## Git Started
 
 ### Definitions
@@ -66,7 +64,7 @@
 
 ## Remote
 
-### Git Remote
+### Git Remote (GitHub)
 
 - There are other options for remote collaboration (i.e. Bitbucket and GitLab), but this course will focus on GitHub.
 - If you run `git remote -v` it will tell you what repositories you have linked to your project as well as the URLs. Typically the remote repo has the name **origin**.
@@ -84,3 +82,5 @@
 - You can edit on the remote repo in GitHub directly (i.e. pencil icon) and then commit it from there as well. This is good when fixing small typos, for example.
 
   - This will cause the remote repo to be one commit ahead of the local repo.
+
+### Git Merge
