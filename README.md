@@ -137,3 +137,15 @@
 - If you switch back to the main branch prior to merging then the code you created on the branch will disappear.
 
 - If you are on the main branch and you want to both create a new branch and checkout the new branch in one command you would run `git checkout -b new-branch-name`.
+
+### Merge Conflicts
+
+- A conflict occurs when you try to merge two different branches that modify the same line of code and have been committed. Under these circumstances git does not know which one to use.
+
+- In vscode any files affected by the conflict will be highlighted in red and the lines affected will be displayed in different colors. You can also go to the terminal and run `git diff` to see the same display within the terminal window.
+
+  - The outcome to the conflict will be to accept the changes in one of the two branches or merge the changes which will put them one line below the other.
+
+  - If you accept the changes then you need to create a new commit called a **merge commit**. You commit the merge the same way you would normally commit changes however it is good practice to label somewhere in the commit message that it is for a merge.
+
+- If you want to go back to the original state prior to the merge starting then you can run `git merge --abort`.
