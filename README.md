@@ -62,9 +62,9 @@
   - If you click the ... icon it will list all git commands and allow you to run them without typing them out (This git dashboard UI essentially works like the git desktop app).
   - At the bottom of vscode you will see the current branch name listed. If you click that it will list all of the project branches and allow you to switch between them.
 
-## Remote
+## Remote (GitHub)
 
-### Git Remote (GitHub)
+### Git Remote
 
 - There are other options for remote collaboration (i.e. Bitbucket and GitLab), but this course will focus on GitHub.
 - If you run `git remote -v` it will tell you what repositories you have linked to your project as well as the URLs. Typically the remote repo has the name **origin**.
@@ -99,3 +99,10 @@
   - You can run into issues if you have any un-committed changes in your current working directory and you try a git pull. It will fail, because it is not simply going to overwrite your local changes.
     - The way to fix this issue is to either commit your local changes first OR run `git stash` (To be covered in the advanced sections later in the course).
   - If your local changes are modifying the same line of code as the remote changes being pulled then it could result in a **git conflict** (Also a topic to be covered in later sections of the course).
+
+### Git Clone
+
+- When you have a remote repo that you want to copy or clone down to your local machine. This process copies the remote repo to your local machine, but it also keeps a reference to the original repo, which allows us to use commands such as `git pull` to grab the latest source code from said repo (Also a `git log` will show all previous commits to the remote repo).
+- This can be accomplished by the following command `git clone https://github.com/username/repo-name.git` (Or using SSH keys such as the example used in the [Git Remote Section](#git-remote)).
+
+  - You can also add a different name to the directory by appending the name to the end of the above command (i.e. `git clone git@ssh-config:your-username/repo-name.git name-of-dir`).
