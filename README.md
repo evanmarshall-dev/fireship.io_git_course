@@ -51,3 +51,13 @@
 - You can also skip the step of adding to staging and combine the add/commit in one command as follows `git add -a -m "Your commit message goes here."`.
 
   - To get info about the last commit you can run `git log`. This will provide you with the ID, author, and timestamp. You will also see the commit referencing the **head** on the master/main branch. The head is the most current commit on a branch ([See definitions](#definitions)).
+
+### VSCODE
+
+- In the file tree you will notice color changes and symbols are added when we modify files, add to staging and commit.
+- For more detail info you can view the git icon in the action bar as well as install the GitLens extension ([This one](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)).
+
+  - Within the git dashboard you can see file changes, if they are staged or not, and if you click the file name it will open up a git diff panel.
+  - You can also easily stage or un-stage files as well as commit the changes.
+  - If you click the ... icon it will list all git commands and allow you to run them without typing them out (This git dashboard UI essentially works like the git desktop app).
+  - At the bottom of vscode you will see the current branch name listed. If you click that it will list all of the project branches and allow you to switch between them.
