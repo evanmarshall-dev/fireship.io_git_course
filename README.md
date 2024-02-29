@@ -92,3 +92,10 @@
   - The output in the terminal after a merge, you will notice the term **_Fast-Forward_**. That is what is known as a **merge strategy**. This is the simplest strategy to be used when the commits are connected together and you do not need to resolve any merge conflicts. In more complex cases that cannot be easily fast forwarded and additional merge commit will be required to show how the two branches were merged together.
 
 ### Git Pull
+
+- The **second** and simpler strategy is to use `git pull`. This command combines fetch and merge.
+
+  - Since we used the `-u` flag during setup, we can use just `git pull`. Without setting upstream we would have to use `git pull origin main`.
+  - You can run into issues if you have any un-committed changes in your current working directory and you try a git pull. It will fail, because it is not simply going to overwrite your local changes.
+    - The way to fix this issue is to either commit your local changes first OR run `git stash` (To be covered in the advanced sections later in the course).
+  - If your local changes are modifying the same line of code as the remote changes being pulled then it could result in a **git conflict** (Also a topic to be covered in later sections of the course).
