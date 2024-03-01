@@ -23,8 +23,8 @@
 
 - Run `git config --list` to modify our current git config. This list should have a user name and a user email.
 
-  - If no user name, run `git config --global user.name "replace_with_github_username"`.
-  - If no user email, run `git config --global user.email "replace_with_github_email"`.
+  - If no user name, run `git config --global user.name "<replace_with_github_username>"`.
+  - If no user email, run `git config --global user.email "<replace_with_github_email>"`.
 
 ### Git Init
 
@@ -47,8 +47,8 @@
 
 - Every commit has a unique ID that git can use to track the difference in those files versus the difference in some other commit.
 - This allows you to be able to roll back to a previous commit if, for example, a bug is introduced to your code.
-- You can perform a commit by running `git commit -m "Your commit message goes here."`. After the commit, and if you staged all file changes, you will have a clean working directory.
-- You can also skip the step of adding to staging and combine the add/commit in one command as follows `git add -a -m "Your commit message goes here."`.
+- You can perform a commit by running `git commit -m "<Your commit message goes here.>"`. After the commit, and if you staged all file changes, you will have a clean working directory.
+- You can also skip the step of adding to staging and combine the add/commit in one command as follows `git add -a -m "<Your commit message goes here.>"`.
 
   - To get info about the last commit you can run `git log`. This will provide you with the ID, author, and timestamp. You will also see the commit referencing the **head** on the master/main branch. The head is the most current commit on a branch ([See definitions](#definitions)).
 
@@ -71,11 +71,11 @@
 
   - For even more info use `git remote show origin`.
 
-- You can add the project to origin by using the command `git remote add origin https://github.com/your-username/repo-name.git`. You can also configure with SSH, which changes the syntax of the origin URL (i.e. `git@ssh-config:your-username/repo-name.git`).
+- You can add the project to origin by using the command `git remote add origin https://github.com/<your-username>/<repo-name>.git`. You can also configure with SSH, which changes the syntax of the origin URL (i.e. `git@ssh-config:<your-username>/<repo-name>.git`).
 
 ### Git Push
 
-- Takes the work in our local repository and syncs it up with our remote repo. This is accomplished with the command `git push origin main` (`git push remote-repo-name branch-to-be-pushed`).
+- Takes the work in our local repository and syncs it up with our remote repo. This is accomplished with the command `git push origin main` (`git push <remote-repo-name> <branch-to-be-pushed>`).
 
   - Adding `-u` to the command to set the origin repo to the upstream remote in the `.gitconfig` file (i.e. `git push origin main -u`). This allows us to use a command (`git pull`) without requiring any additional arguments.
 
@@ -103,9 +103,9 @@
 ### Git Clone
 
 - When you have a remote repo that you want to copy or clone down to your local machine. This process copies the remote repo to your local machine, but it also keeps a reference to the original repo, which allows us to use commands such as `git pull` to grab the latest source code from said repo (Also a `git log` will show all previous commits to the remote repo).
-- This can be accomplished by the following command `git clone https://github.com/username/repo-name.git` (Or using SSH keys such as the example used in the [Git Remote Section](#git-remote)).
+- This can be accomplished by the following command `git clone https://github.com/<username>/<repo-name>.git` (Or using SSH keys such as the example used in the [Git Remote Section](#git-remote)).
 
-  - You can also add a different name to the directory by appending the name to the end of the above command (i.e. `git clone git@ssh-config:your-username/repo-name.git name-of-dir`).
+  - You can also add a different name to the directory by appending the name to the end of the above command (i.e. `git clone git@ssh-config:<your-username>/<repo-name>.git <name-of-dir>`).
 
 ### GitHub Codespaces
 
@@ -124,19 +124,19 @@
 
   - It is common to rename the master branch to main and this is accomplished by running `git branch -M main`.
 
-  - If you want to create a branch run `git branch new-branch-name`.
+  - If you want to create a branch run `git branch <new-branch-name>`.
 
-  - If you want to delete a branch run `git branch -d new-branch-name`. If you use a `-D` when you run the branch deletion then it will delete the branch even if there is changes on it and it has been merged into the main branch.
+  - If you want to delete a branch run `git branch -d <new-branch-name>`. If you use a `-D` when you run the branch deletion then it will delete the branch even if there is changes on it and it has been merged into the main branch.
 
 ### Git Checkout
 
-- Just creating the branch does not move you into the created branch. To do this you need to run `git checkout branch-name`.
+- Just creating the branch does not move you into the created branch. To do this you need to run `git checkout <branch-name>`.
 
-- You can commit the changes and the branch to the remote repo by running `git commit -am "Your commit message here."`.
+- You can commit the changes and the branch to the remote repo by running `git commit -am "<Your commit message here.>"`.
 
 - If you switch back to the main branch prior to merging then the code you created on the branch will disappear.
 
-- If you are on the main branch and you want to both create a new branch and checkout the new branch in one command you would run `git checkout -b new-branch-name`.
+- If you are on the main branch and you want to both create a new branch and checkout the new branch in one command you would run `git checkout -b <new-branch-name>`.
 
 ### Merge Conflicts
 
@@ -166,13 +166,27 @@
 4. Open up project on your local machine and create a branch that describes the changes you are going to make.
 5. Use `git checkout` to switch into the new branch.
 6. After you complete the changes, `git add` and `git commit` to commit them to the repo.
-7. Then push up to the repo using `git push origin your-feature-branch-name`.
+7. Then push up to the repo using `git push origin <your-feature-branch-name>`.
 8. Go back to the repo on GitHub and click the button to create a new pull request.
 9. Make sure you follow the contribution guidelines to the original repo owner carefully.
 10. Click the green button to submit the pull request.
 
 - When working with the fork locally you can keep it in sync with the original repo by running:
 
-  - `git remote add upstream https://github.com/original-username/original-repo-name.git`. This adds a remote link to the upstream repo.
+  - `git remote add upstream https://github.com/<original-username>/<original-repo-name>.git`. This adds a remote link to the upstream repo.
   - When there are changes run `git fetch upstream`.
   - Then run `git rebase upstream/main` to apply changes on top of your existing work.
+
+## Advanced
+
+### Git Reset
+
+- If you want to get rid of everything in the staging area run `git reset`. This does not modify or delete anything.
+
+- If you commit a bad file change then you need to first grab the ID or SHA of that commit using `git log`. Then you find the commit you want to go back to and run `git reset <your-commit-id>`.
+
+  - By default git reset will run in **mixed mode**, which means that it will move us back to the previous commit, but it will not delete the files that we were working on.
+
+- If you want to revert back to the previous commit AND delete the changes (go back to the state of the previous commit) you would run `git reset --hard <your-commit-id>`. Be careful using this because you cannot retrieve the deleted file changes after this command.
+
+- **_NEVER_** do a reset when a commit has been pushed to GitHub.
