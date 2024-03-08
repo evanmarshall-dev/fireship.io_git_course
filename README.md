@@ -190,3 +190,13 @@
 - If you want to revert back to the previous commit AND delete the changes (go back to the state of the previous commit) you would run `git reset --hard <your-commit-id>`. Be careful using this because you cannot retrieve the deleted file changes after this command.
 
 - **_NEVER_** do a reset when a commit has been pushed to GitHub.
+
+### Git Revert
+
+- Since you should never use `git reset` on commits already pushed to GitHub, there is a command to do this without causing issues for everyone working on the GitHub repo.
+
+  - The command is `git revert`.
+
+    - First, you want to run `git log` to get the ID of the bad commit.
+    - Run `git revert <commit ID>`, which removes the committed file similar to `git reset --hard`. The **difference** is that the bad commit is not lost and is still in the commit history. A `git log` will show a new commit which states that we reverted the bad commit.
+    - This commit can now be pushed to the remote repo (GitHub).
