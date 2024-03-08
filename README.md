@@ -209,3 +209,21 @@
 
   - For fixing a commit message, run `git commit --amend -m "<fixed message>"`.
   - For adding an un-staged file and not amend the message, run `git add . && git commit --amend --no-edit`.
+
+### Git Stash
+
+- Git stash allows you to save your work without having to commit it to the repositories history. This is useful if you are working on something experimental, which does not need to be committed, but you still want to work on it later.
+
+  - Run `git stash` and you will see the content will be removed from the file, but is not lost. Instead, it was saved to the stash which is like an array which holds onto changes that can be applied later.
+
+  - To apply those changes back to the code run `git stash pop`.
+
+- If you find yourself doing this frequently you might want to add additional info about each item in the stash.
+
+  - If you want to do this then first run `git stash save <info or name about the feature>`.
+
+  - You can see all the current items you have in the stash by running `git stash list`. This will show you that each item has an index followed by the name that you provided.
+
+  - Above, when we used `git stash pop` it only used the latest stashed item. If you want to do this out of order then you would run `git stash apply <index number that you want to apply to your code>` (The index number is found by running the `git stash list` command).
+
+- You want to use `git stash` sparingly, because you might get merge conflicts when the stashed items affect the same line of code.
