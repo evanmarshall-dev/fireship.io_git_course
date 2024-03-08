@@ -265,3 +265,71 @@
   - A `git log` command will now show one commit with one commit message.
 
   - This is the last thing you do before performing a pull request or merge your feature back into the master/main branch.
+
+### GitHub Actions
+
+- A tool to automate repetitive and/or manual processes (DevOps your app).
+
+- Considering a repo on GitHub, people might star the repo, create a pull request, create an issue, or merge code into the master/main branch. These are all examples of **_events_** and any event can trigger an automated workflow.
+
+- A workflow can spin up one or more containers for you in the cloud and you provide a set of steps or instructions for the container to do something useful for you.
+
+- GitHub will log the progress of each step and make it very clear if something failed.
+
+- Instead of using action steps created manually, you can use ones implemented by the community. Each step is essentially a reusable chunk of code called an **_action_**.
+
+- The following is some real world examples of actions.
+
+#### Continuous Integration (CI)
+
+The idea behind CI is to have developers submit their code to the main codebase in small maintainable chunks. Usually this is done on a daily basis and those changes should be automatically **tested** against the main codebase.
+
+When you look at a project on GitHub you will see an **actions** tab. This is where you find a log of everything that happened on the server when a workflow is triggered.
+
+What we want to do for CI is to have our test suite run every time there is pull request to the master/main branch. If the test suite fails we will get a red "x" automatically telling us not to merge that pull request. If every thing goes as planned we will get a green check mark.
+
+In the repo or project you will see a .github directory with a sub-directory called **_workflows_** and a file within it called `integrate.yml`. Anything within the workflows directory will be picked up by GitHub and automatically setup as a workflow in the cloud. The yaml file is where we define the workflow.
+
+Here is a sample yaml file:
+
+```yaml
+name: Node Continuous Integration
+
+# Tell it on which event(s) to run with the on object.
+on:
+  # Run on pull request.
+  pull_request:
+    # To the main branch.
+    branches: [main]
+
+# Every workflow has one or more jobs defined by the jobs object.
+jobs:
+  # Give the job a name.
+  test_pull_request:
+    # Tell the job which virtual machine (VM) to run on (i.e. Ubuntu, Windows or MacOS).
+    runs-on: ubuntu-latest
+    # Give the job a set of steps/instructions that build and test the code.
+    steps:
+      # First get source code into the VM using an officially maintained action called checkout. This brings your source code into the working directory.
+      # This allows you to run commands like you would from the command line if working on the project locally.
+      - uses: actions/checkout@v2
+      # We also need to setup nodejs to run those commands. We use the node setup action.
+      - uses: actions/setup-node@v1
+        with:
+          # And specify the version.
+          node-version: 12
+      # Now we can start running our own commands. First, install all of our dependencies from npm, which is equivalent to npm install, but it does a clean install for your CI server.
+      - run: npm ci
+      # Then run our test command to test our code.
+      - run: npm test
+      # Then run our build command to make sure the build compiles properly.
+      - run: npm run build
+```
+
+To start using the workflow we simply commit it to the master/main branch (i.e. git add, git commit, git push).
+
+The actions tab on GitHub will remain empty until a pull request event triggers our workflow (create branch, make some changes (breaking or not), git add, git commit, git push, then run the pull request on GitHub).
+
+If it was a breaking change and the pull request workflow fails then you can return to the local code, fix it, re-commit/push it and GitHub will auto re-run the workflow because it is an open pull request.
+
+#### Continuous Deployment (CD)
