@@ -227,7 +227,6 @@
   - Above, when we used `git stash pop` it only used the latest stashed item. If you want to do this out of order then you would run `git stash apply <index number that you want to apply to your code>` (The index number is found by running the `git stash list` command).
 
 - You want to use `git stash` sparingly, because you might get merge conflicts when the stashed items affect the same line of code.
-<<<<<<< HEAD
 
 ### Git Rebase
 
@@ -266,28 +265,3 @@
   - A `git log` command will now show one commit with one commit message.
 
   - This is the last thing you do before performing a pull request or merge your feature back into the master/main branch.
-||||||| f35118a
-=======
-
-### Git Rebase
-
-- **Rebase** vs. **Merge**. Merge is when someone works on a feature branch and merges it back into the master/main branch. Rebase is when we take a feature branch and rewrite history to make it look like you started working on the feature branch with the latest updates of the master/main branch or some other branch you rebased.
-
-  - Rebase keeps your feature branch up to date with the master/main branch without extra merge commits.
-
-- Rebase should only really be done when you are working on your own private feature branch, because it is a more **destructive** option that rewrites history. You do not want to do it with a public branch with multiple collaborator because everyone would be working with a different history.
-
-  - First, create a feature branch by running `git checkout -b <feature branch name>`.
-
-  - Add a file and commit the branch.
-
-  - Make commits on the master/main branch.
-
-  - On the feature branch we want to integrate the new code from the master/main with what we are working on.
-
-    - We can use `git merge`, but the problem is we might have to add a bunch of merge commits to the history, which clutters up the history of a larger project.
-
-  - Instead, we can run `git rebase main`, which takes the feature branch and puts it on the tip of the main. This makes it look like you just started working on the feature with the code from the master/main branch.
-
-    - If you are ever unsure about a rebase, you can make another branch from the feature, rebase that, and if it all works out then delete that extra branch and perform the rebase on the feature branch.
->>>>>>> b36e67b2d6b65d631a669b2711919ed4308bebe1
