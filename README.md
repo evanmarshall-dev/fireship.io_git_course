@@ -339,3 +339,8 @@ If it was a breaking change and the pull request workflow fails then you can ret
 After the CI completes we know we have a valid pull request and when we merge that code into the master/main branch we also want to **_deploy_** the app to our customers.
 
 [Deploying Angular App to Firebase Hosting - Guide](https://fireship.io/snippets/github-actions-deploy-angular-to-firebase-hosting/)
+
+1. Install firebase cli on machine. Enter your root/global directory and run `npm install -g firebase-tools`.
+2. Login to Firebase via CLI by running `firebase login --no-localhost`. This should open up a login prompt with URL to complete auth via your Google account.
+3. Now to initialize a firebase project. You will cd into your project folder and run `firebase init hosting`. This will open up a init prompt to setup the project.
+4. Now to push the project to firebase hosting account by running `firebase deploy --only hosting`. This can all be done locally because we are authenticated into our firebase account locally.
