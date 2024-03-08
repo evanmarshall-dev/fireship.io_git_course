@@ -249,3 +249,19 @@
   - Instead, we can run `git rebase main`, which takes the feature branch and puts it on the tip of the main. This makes it look like you just started working on the feature with the code from the master/main branch.
 
     - If you are ever unsure about a rebase, you can make another branch from the feature, rebase that, and if it all works out then delete that extra branch and perform the rebase on the feature branch.
+
+### Squash
+
+- Another thing you can do with rebase is **_squash_** your commits. Often when working on a feature you make lots of commits which were not necessary when the feature gets merged onto the master/main branch. These commits are irrelevant to the rest of the team.
+
+- Squashing the commits take them and combine them into one single commit with a single message.
+
+  - This is done by running `git rebase main --interactive` that pulls up a document in the editor that allows us to customize how this rebase will work.
+
+    - You will see the commits listed in the editor with the keyword **_pick_** beside them. Pick is the default and means you want to keep the commit as is. To squash any of the commits you will change pick to **squash** which takes the commit messages from each of these commits and combine them into one single message with the original commit.
+    - You can also use **_fixup_**, which does the same thing but it discards the commit message from the commits you squash in.
+    - You then save the file and close it, which brings up another file where you can customize the commit message.
+
+  - A `git log` command will now show one commit with one commit message.
+
+  - This is the last thing you do before performing a pull request or merge your feature back into the master/main branch.
