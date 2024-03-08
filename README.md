@@ -266,7 +266,9 @@
 
   - This is the last thing you do before performing a pull request or merge your feature back into the master/main branch.
 
-### GitHub Actions
+### GitHub Actions (CI = merge code in, CD = release code out)
+
+[GitHub Actions Examples](https://fireship.io/lessons/five-useful-github-actions-examples/)
 
 - A tool to automate repetitive and/or manual processes (DevOps your app).
 
@@ -333,3 +335,7 @@ The actions tab on GitHub will remain empty until a pull request event triggers 
 If it was a breaking change and the pull request workflow fails then you can return to the local code, fix it, re-commit/push it and GitHub will auto re-run the workflow because it is an open pull request.
 
 #### Continuous Deployment (CD)
+
+After the CI completes we know we have a valid pull request and when we merge that code into the master/main branch we also want to **_deploy_** the app to our customers.
+
+[Deploying Angular App to Firebase Hosting - Guide](https://fireship.io/snippets/github-actions-deploy-angular-to-firebase-hosting/)
