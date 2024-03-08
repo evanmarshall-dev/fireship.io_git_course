@@ -200,3 +200,12 @@
     - First, you want to run `git log` to get the ID of the bad commit.
     - Run `git revert <commit ID>`, which removes the committed file similar to `git reset --hard`. The **difference** is that the bad commit is not lost and is still in the commit history. A `git log` will show a new commit which states that we reverted the bad commit.
     - This commit can now be pushed to the remote repo (GitHub).
+
+### Git Commit --Amend
+
+- If you make a minor mistake in git (i.e. typo in a commit message or you forgot to stage a file with your commit) you can modify it without needing to reset or revert.
+
+- This only works in some specific situations.
+
+  - For fixing a commit message, run `git commit --amend -m "<fixed message>"`.
+  - For adding an un-staged file and not amend the message, run `git add . && git commit --amend --no-edit`.
