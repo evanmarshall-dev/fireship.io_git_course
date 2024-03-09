@@ -1,22 +1,28 @@
 name: Firebase Continuous Deployment
 
 on:
+  #  This code will run if we push code directly to the main branch or if we merge a pull request into it.
   push:
-    branches: [ master ]
-
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # Checkout the code.
       - uses: actions/checkout@master
+      # Setup node.
       - uses: actions/setup-node@master
         with:
           node-version: 12
       - run: npm ci
+      # Run our build command.
       - run: npm run build
+      # Then we deploy it using a third party action called firebase action.
       - uses: w9jds/firebase-action@master
+        # Tell the above action to use the arguments deploy --only hosting.
         with:
           args: deploy --only hosting
+        # This looks for an environment variable called FIREBASE_TOKEN. This can be accessed with the below syntax.
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
