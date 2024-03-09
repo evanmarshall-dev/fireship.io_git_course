@@ -345,3 +345,65 @@ After the CI completes we know we have a valid pull request and when we merge th
 3. Now to initialize a firebase project. You will cd into your project folder and run `firebase init hosting`. This will open up a init prompt to setup the project.
 4. Now to push the project to firebase hosting account by running `firebase deploy --only hosting`. This can all be done locally because we are authenticated into our firebase account locally.
 5. Now we need to authenticate a remote CI server to do the same thing. In order to do this we need to share a secret token with GitHub. We obtain the token from firebase by running `firebase login:ci`. This will open up the browser and authenticate using your Google account. Then the token will be displayed in the command line interface (CLI) or terminal. Keep this token string value SECRET. Copy the token from the CLI, head over to the GitHub repo, settings, secrets, and add a new secret. Give it a name of `FIREBASE_TOKEN` and paste in the token. GitHub will auto encrypt the token allowing us to access it securely from our CI server. This means we are able to securely authenticate with firebase via a GitHub Actions workflow.
+
+#### Publish NPM Packages
+
+If you maintain an NPM package and come out with a new release you need to go to the CLI, login to NPM, and push that code to the NPM registry.
+
+This process can be automated with GitHub Actions:
+
+```yaml
+name: Sveltefire Package
+
+on:
+  # Using the release event because not every code change on the master branch requires a new release to be pushed out to NPM.
+  release:
+    types: [created]
+
+# Two jobs, build and one to publish to NPM. Also might want an additional job to publish to GitHub Registry. By default all jobs run concurrently and parallel, but we don't want this because we want to first build the code before releasing it to the package manager. The NEEDs keyword will signify that we run that job after the needs job is finished. This allows us to build the code once and push it out to two different registries without having to rebuild the code.
+jobs:
+  build:
+
+  publish-npm:
+    needs: build
+
+  publish-gpr:
+    needs: build
+```
+
+### Integrate Apps
+
+Most companies use a lot of other communication tools beyond GitHub, such as: slack, discord, trello, jira, etc. In most cases these tools maintain GitHub apps for you to integrate with their tools directly in GitHub.
+
+In the GitHub marketplace you will see that it is separated by apps and actions. Actions are reusable pieces of code you use within your own workflow, while Apps are fully pre-built solutions that do not require you to deploy any code whatsoever.
+
+For example, maybe we want to receive a slack notification each time a new GitHub issue is posted.
+
+You can achieve this using a community based action as follows:
+
+```yaml
+name: Slack Issues
+
+on:
+  # Trigger for GitHub issues event.
+  issues:
+    types: [opened]
+
+jobs:
+  # Use a slack action.
+  post_slack_message:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: rtCamp/action-slack-notify@v2.0.0
+    # Some config variables to have it post messages in your slack channel each time there is a new issue on GitHub.
+    env:
+      SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK}}
+      SLACK_USERNAME: CyberJeff
+      SLACK_CHANNEL: gh-issues
+```
+
+This can also all be done using a GitHub app. They are great because they can be used with multiple repos simultaneously.
+
+Some examples of cool tasks that can be done using apps are: Analyzing code quality (i.e. Codacy), auto update your dependencies (i.e. Dependabot Preview), auto optimize all images (i.e. Imgbot), etc.
+
+### Schedule Background Jobs
