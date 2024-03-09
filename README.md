@@ -371,7 +371,7 @@ jobs:
     needs: build
 ```
 
-### Integrate Apps
+#### Integrate Apps
 
 Most companies use a lot of other communication tools beyond GitHub, such as: slack, discord, trello, jira, etc. In most cases these tools maintain GitHub apps for you to integrate with their tools directly in GitHub.
 
@@ -406,4 +406,31 @@ This can also all be done using a GitHub app. They are great because they can be
 
 Some examples of cool tasks that can be done using apps are: Analyzing code quality (i.e. Codacy), auto update your dependencies (i.e. Dependabot Preview), auto optimize all images (i.e. Imgbot), etc.
 
-### Schedule Background Jobs
+#### Schedule Background Jobs
+
+For example, how to export Firestore data on a regular basis. Currently the database does not offer automated backups so you need to manually export your data in order to re-import it in case of a disaster.
+
+So we can automate this using the following recipe:
+
+```yaml
+name: Export Firestore Data
+
+on:
+  schedule:
+    # There is an app called crontab guru that can explain the below syntax and auto generate cron schedules for you. The below schedule runs every night at midnight.
+    - cron: "0 0 * * *"
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      # Using an action maintained by Google Cloud Platform. It sets up the GCloud CLI in the environment.
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{secrets.GCP_SA_KEY}}
+          export_default_credentials: true
+
+      # Use the action to run a few commands to export our firestore data into a storage bucket.
+      - run: gcloud config set project $PROJECT_ID
+      - run: gcloud firestore export $BUCKET
+```
