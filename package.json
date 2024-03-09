@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
     "build": "webpack src/app.js -o public/bundle.js",
     "deploy": "firebase deploy --token \"$FIREBASE_TOKEN\" --only hosting"
   },
@@ -14,10 +13,6 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "jest": "^25.1.0",
-    "webpack": "^4.42.0",
-    "webpack-cli": "^3.3.11"
-  },
+  "devDependencies": {},
   "dependencies": {}
 }
