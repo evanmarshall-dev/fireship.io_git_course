@@ -282,7 +282,7 @@
 
 - The following is some real world examples of actions.
 
-#### Continuous Integration (CI)
+#### Step 1: Continuous Integration (CI)
 
 The idea behind CI is to have developers submit their code to the main codebase in small maintainable chunks. Usually this is done on a daily basis and those changes should be automatically **tested** against the main codebase.
 
@@ -334,7 +334,7 @@ The actions tab on GitHub will remain empty until a pull request event triggers 
 
 If it was a breaking change and the pull request workflow fails then you can return to the local code, fix it, re-commit/push it and GitHub will auto re-run the workflow because it is an open pull request.
 
-#### Continuous Deployment (CD)
+#### Step 2: Continuous Deployment (CD)
 
 After the CI completes we know we have a valid pull request and when we merge that code into the master/main branch we also want to **_deploy_** the app to our customers.
 
@@ -346,7 +346,7 @@ After the CI completes we know we have a valid pull request and when we merge th
 4. Now to push the project to firebase hosting account by running `firebase deploy --only hosting`. This can all be done locally because we are authenticated into our firebase account locally.
 5. Now we need to authenticate a remote CI server to do the same thing. In order to do this we need to share a secret token with GitHub. We obtain the token from firebase by running `firebase login:ci`. This will open up the browser and authenticate using your Google account. Then the token will be displayed in the command line interface (CLI) or terminal. Keep this token string value SECRET. Copy the token from the CLI, head over to the GitHub repo, settings, secrets, and add a new secret. Give it a name of `FIREBASE_TOKEN` and paste in the token. GitHub will auto encrypt the token allowing us to access it securely from our CI server. This means we are able to securely authenticate with firebase via a GitHub Actions workflow.
 
-#### Publish NPM Packages
+#### Step 3: Publish NPM Packages
 
 If you maintain an NPM package and come out with a new release you need to go to the CLI, login to NPM, and push that code to the NPM registry.
 
@@ -371,7 +371,7 @@ jobs:
     needs: build
 ```
 
-#### Integrate Apps
+#### Step 4: Integrate Apps
 
 Most companies use a lot of other communication tools beyond GitHub, such as: slack, discord, trello, jira, etc. In most cases these tools maintain GitHub apps for you to integrate with their tools directly in GitHub.
 
@@ -406,7 +406,7 @@ This can also all be done using a GitHub app. They are great because they can be
 
 Some examples of cool tasks that can be done using apps are: Analyzing code quality (i.e. Codacy), auto update your dependencies (i.e. Dependabot Preview), auto optimize all images (i.e. Imgbot), etc.
 
-#### Schedule Background Jobs
+#### Step 5: Schedule Background Jobs
 
 For example, how to export Firestore data on a regular basis. Currently the database does not offer automated backups so you need to manually export your data in order to re-import it in case of a disaster.
 
@@ -434,3 +434,27 @@ jobs:
       - run: gcloud config set project $PROJECT_ID
       - run: gcloud firestore export $BUCKET
 ```
+
+### Advanced Git Tips
+
+> Get good with git!
+
+- Tip #1: Combining `git add . && git commit -m "<Commit message here.>"`. This is done by running `git commit -am "<Commit message here.>"`.
+
+- Tip #2: You can also create **_aliases_** in the global git config using the following command: `git config --global alias.<alias name> "commit -am"`. Then you would run the alias by typing `git <alias name> "noice!"`.
+
+- Tip #3: **_Force Push_** will overwrite the remote commit with the state of your local code. Run `git push origin main --force`.
+
+- Tip #4: Make `git log` prettier. Run `git log --graph --oneline --decorate`.
+
+- Tip #5: **_Git Bisect_** allows you to start from a commit that is known to have a bug when the app was working not long ago. You run `git bisect <last known working commit>` and it performs a binary search to walk you through each commit in between. If the commit looks good then type `git bisect good` to move onto the next commit. Eventually you will find the bad commit and know which one needs to be fixed. At this point you would run `git bisect bad`.
+
+- Tip #6: More productive commits using both fixup and squash. For example: `git commit --fixup <commit ID>` and `git commit --squash <commit ID>`. Using these when making commits on your branch tells git in advanced that you want to squash them so that when you go to do a rebase with autosquash (`git rebase -i --autosquash`) it handles all of the squashing automatically.
+
+- Tip #7: **_Git Hooks_**. Whenever you perform an operation with git (i.e. a commit) it creates an event and hooks allow you to run some code either before or after that event happens. You can find a hooks directory within the .git directory. Within this dir you can find a bunch of scripts that can be configured to run when different events in git happen. There is a package called **_husky_** that makes it much easier to configure git hooks (i.e. you can create scripts that lint or validate your code prior to a commit).
+
+- Tip #8: **_Destruction_**. For example you have a local repo you are making breaking changes on from a remote repo and you want to go back to the original state in the remote repo. In order to do this you would first run `git fetch origin` to grab the latest code in the remote repo then `git reset --hard origin/main` to override your local code with the remote code.
+
+  - If you are still left with random untracked files or build artifacts here and there. To fix this run `git clean -df` to remove those files as well.
+
+- Tip #9: If you recently switched out of a branch and forgot its name run `git checkout -` to go back into the previous branch.
